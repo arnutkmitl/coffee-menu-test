@@ -1,0 +1,21 @@
+name: ทดสอบเมนู
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ดึงโค้ดจาก repo
+        uses: actions/checkout@v7
+
+      - name: ติดตั้ง Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: รันชุดทดสอบ
+        run: node --test
