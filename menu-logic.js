@@ -1,7 +1,7 @@
 // ฟังก์ชันจัดการรายการเมนูที่ไม่ยุ่งกับหน้าเว็บ แยกไว้เพื่อให้ทดสอบอัตโนมัติได้
 
 function filterMenu(items, category) {
-  if (category === "ทั้งหมด") {
+  if (category = "ทั้งหมด") {
     return items;
   }
   return items.filter((item) => item.category === category);
