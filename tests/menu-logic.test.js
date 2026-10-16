@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert");
-const { filterMenu, sortItemsByPrice } = require("../menu-logic.js");
+const { filterMenu, sortItemsByPrice, addToCart, cartSummary } = require("../menu-logic.js");
 
 const sample = [
   { name: "ลาเต้", price: 60, category: "กาแฟ" },
@@ -30,4 +30,16 @@ test("เรียงตามราคา จากน้อยไปมาก"
 test("เรียงตามราคา ไม่แก้ลำดับของรายการเดิม", () => {
   sortItemsByPrice(sample);
   assert.strictEqual(sample[0].name, "ลาเต้");
+});
+
+test("เพิ่มลงตะกร้า ไม่แก้ตะกร้าเดิม", () => {
+  const cart = [];
+  const newCart = addToCart(cart, sample[0]);
+  assert.strictEqual(cart.length, 0);
+  assert.strictEqual(newCart.length, 1);
+});
+
+test("สรุปตะกร้า นับจำนวนและรวมราคา", () => {
+  const cart = addToCart(addToCart([], sample[0]), sample[1]);
+  assert.deepStrictEqual(cartSummary(cart), { count: 2, total: 100 });
 });

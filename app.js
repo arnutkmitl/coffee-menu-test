@@ -15,11 +15,24 @@ function renderMenu(items) {
   for (const item of items) {
     const li = document.createElement("li");
     li.innerHTML = `<span>${item.name}<small>${item.desc}</small></span><span>${item.price} บาท</span>`;
+    const addBtn = document.createElement("button");
+    addBtn.textContent = "เพิ่ม";
+    addBtn.addEventListener("click", () => {
+      cart = addToCart(cart, item);
+      renderCart();
+    });
+    li.appendChild(addBtn);
     list.appendChild(li);
   }
 }
 
 let shownItems = menu;
+let cart = [];
+
+function renderCart() {
+  const { count, total } = cartSummary(cart);
+  document.getElementById("cart-summary").textContent = `ตะกร้า: ${count} รายการ รวม ${total} บาท`;
+}
 
 function sortByPrice() {
   renderMenu(sortItemsByPrice(shownItems));
@@ -37,4 +50,9 @@ renderMenu(menu);
 
 document.getElementById("theme-btn").addEventListener("click", () => {
   document.body.classList.toggle("dark");
+});
+
+document.getElementById("clear-cart-btn").addEventListener("click", () => {
+  cart = [];
+  renderCart();
 });
