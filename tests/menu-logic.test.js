@@ -43,3 +43,7 @@ test("สรุปตะกร้า นับจำนวนและรวม�
   const cart = addToCart(addToCart([], sample[0]), sample[1]);
   assert.deepStrictEqual(cartSummary(cart), { count: 2, total: 100 });
 });
+
+test("สรุปตะกร้าว่าง ได้ 0 รายการ 0 บาท", () => {
+  assert.deepStrictEqual(cartSummary([]), { count: 0, total: 0 });
+});
