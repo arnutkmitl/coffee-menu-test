@@ -6,7 +6,7 @@ const menu = [
   { name: "มอคค่า", price: 60, desc: "เอสเปรสโซ ช็อกโกแลต นมสด", category: "กาแฟ" },
   { name: "ชาไทย", price: 40, desc: "ชาไทยสูตรร้าน หวานน้อยได้", category: "ชา" },
   { name: "ครัวซองต์", price: 45, desc: "เนยสด อบใหม่ทุกเช้า", category: "ขนม" },
-  { name: "บราวนี่", price: 55, desc: "ช็อกโกแลตเข้มข้น", category: "ขนม" }
+  { name: "บราวนี่", price: 60, desc: "ช็อกโกแลตเข้มข้น", category: "ขนม" }
 ];
 
 function renderMenu(items) {
