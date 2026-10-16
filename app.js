@@ -1,10 +1,10 @@
 const menu = [
-  { name: "เอสเปรสโซ", price: 45, desc: "ช็อตเข้ม คั่วกลาง" },
-  { name: "ลาเต้", price: 60, desc: "นมสดโฮลมิลค์ ช็อตคู่" },
-  { name: "คาปูชิโน", price: 55, desc: "ฟองนมหนา โรยผงโกโก้" },
-  { name: "อเมริกาโน่", price: 50, desc: "เอสเปรสโซเติมน้ำร้อน" },
-  { name: "มอคค่า", price: 60, desc: "เอสเปรสโซ ช็อกโกแลต นมสด" },
-  { name: "ชาไทย", price: 40, desc: "ชาไทยสูตรร้าน หวานน้อยได้" }
+  { name: "เอสเปรสโซ", price: 45, desc: "ช็อตเข้ม คั่วกลาง", category: "กาแฟ" },
+  { name: "ลาเต้", price: 60, desc: "นมสดโฮลมิลค์ ช็อตคู่", category: "กาแฟ" },
+  { name: "คาปูชิโน", price: 55, desc: "ฟองนมหนา โรยผงโกโก้", category: "กาแฟ" },
+  { name: "อเมริกาโน่", price: 50, desc: "เอสเปรสโซเติมน้ำร้อน", category: "กาแฟ" },
+  { name: "มอคค่า", price: 60, desc: "เอสเปรสโซ ช็อกโกแลต นมสด", category: "กาแฟ" },
+  { name: "ชาไทย", price: 40, desc: "ชาไทยสูตรร้าน หวานน้อยได้", category: "ชา" }
 ];
 
 function renderMenu(items) {
@@ -17,9 +17,25 @@ function renderMenu(items) {
   }
 }
 
+let shownItems = menu;
+
+function filterMenu(items, category) {
+  if (category === "ทั้งหมด") {
+    return items;
+  }
+  return items.filter((item) => item.category === category);
+}
+
 function sortByPrice() {
-  const sorted = [...menu].sort((a, b) => a.price - b.price);
+  const sorted = [...shownItems].sort((a, b) => a.price - b.price);
   renderMenu(sorted);
+}
+
+for (const btn of document.querySelectorAll("#filters button")) {
+  btn.addEventListener("click", () => {
+    shownItems = filterMenu(menu, btn.dataset.category);
+    renderMenu(shownItems);
+  });
 }
 
 document.getElementById("sort-btn").addEventListener("click", sortByPrice);
